@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My favorites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let food of favorties; let i=index;">
+    <ion-card-content [ngClass]= "(i % 2 == 0) ? 'odd' : 'even'"
+    (click)="onCardClick(food.fdcId)">
+        <p>FDCID:<p>
+        <h3 class="info">{{ food.fdcId }}</h3>
+        <p>Description:</p>
+        <h3>{{ food.description }}</h3>
+
+        <p>Brand Owner:</p>
+        <h3>{{ food.brandOwner }}</h3>
+
+        <p>Ingredients:</p>
+        <h3>{{ food.ingredients }}</h3>  
+    </ion-card-content>
+  </ion-card>
+</ion-content>

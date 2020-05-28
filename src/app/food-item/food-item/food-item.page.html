@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ fooditem?.brandOwner}}</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <h3 class="ion-text-center">{{ fooditem?.description}}</h3>
+  <div class="ion-text-center">
+    <ion-icon 
+      [name]="fooditem?.isFavorite ? 'heart' : 'heart-outline'" 
+      color="danger" 
+      style="zoom:1.5;"
+  
+      (click) = "onToggle()"
+      ></ion-icon></div>
+  
+  <ion-card *ngFor="let nt of fooditem?.foodNutrients; let i=index;">
+    <ion-card-content [ngClass]= "(i % 2 == 0) ? 'odd' : 'even'">
+          <p>Nutrient:<p>
+          <h3>{{ nt.nutrient.name }}</h3>
+          <p>Amount:</p>
+          <h3>{{ nt.amount }} {{ nt.nutrient.unitName}}</h3>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
