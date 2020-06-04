@@ -19,12 +19,14 @@
       (click) = "onToggle()"
       ></ion-icon></div>
   
-  <ion-card *ngFor="let nt of fooditem?.foodNutrients; let i=index;">
-    <ion-card-content [ngClass]= "(i % 2 == 0) ? 'odd' : 'even'">
-          <p>Nutrient:<p>
-          <h3>{{ nt.nutrient.name }}</h3>
-          <p>Amount:</p>
-          <h3>{{ nt.amount }} {{ nt.nutrient.unitName}}</h3>
-    </ion-card-content>
+  <ion-card>
+    <ion-title >Nutrients:</ion-title>  
+    <ion-grid ion-grid-padding="1">
+       <ion-row *ngFor="let nt of fooditem?.foodNutrients; let i=index;">
+         <ion-col size=".5"></ion-col>
+         <ion-col>{{ nt.nutrient.name }}</ion-col>
+         <ion-col>{{ nt.amount }} {{ nt.nutrient.unitName}}</ion-col>
+       </ion-row>
+    </ion-grid>   
   </ion-card>
 </ion-content>
