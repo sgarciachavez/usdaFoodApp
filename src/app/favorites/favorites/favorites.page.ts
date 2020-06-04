@@ -21,14 +21,25 @@ export class FavoritesPage implements OnInit {
     Object.keys(localStorage).forEach(k =>{
       let str:string = localStorage.getItem(k);
       let food:Food = JSON.parse(str);
-      console.log(JSON.stringify(food));
+      //console.log(JSON.stringify(food));
       arr.push(food);
     })
 
     this.favorties = arr;
   }
 
-  onCardClick(){
-    console.log("onCardClick");
+  removeFavorite(id:number){
+    console.log(id);
+    this.favorties = this.favorties.filter((f) => {
+      return f.fdcId !== id
+    })
+
+    localStorage.removeItem(id.toString())
+  }
+
+  removeAll(){
+    console.log("Remove ALL")
+    this.favorties = [];
+    localStorage.clear();
   }
 }
