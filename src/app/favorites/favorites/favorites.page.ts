@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Food } from '../models/food';
+import { Food } from '../../models/food';
 
 @Component({
   selector: 'app-favorites',
@@ -13,7 +13,7 @@ export class FavoritesPage implements OnInit {
 
   ngOnInit() {
     
-    let arr:Food = this.favorties;
+    let arr:Food[] = this.favorties;
     if(!arr){
       arr=[];
     }
