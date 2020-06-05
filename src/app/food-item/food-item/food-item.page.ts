@@ -25,19 +25,26 @@ export class FoodItemPage implements OnInit {
         //redirect
         return;
       }
-      const fdcId = paramMap.get('fdcId');
+      const fdcId = paramMap.get('fdcId')
       console.log(fdcId);
       this.usdaService.getFoodByFdcid(fdcId).subscribe(item =>{
         //console.log("result: " + JSON.stringify(item));
         this.fooditem = <any>item;
+        this.fooditem.isFavorite = this.isFavorite(this.fooditem.fdcId.toString())
       })
-    });
+    }) 
   }
 
-  onToggle(){
+  isFavorite(id:String){
+    var item = localStorage.getItem(id.toString())
+    return item ? true : false
+  } 
+
+  onToggle(){  
     this.fooditem.isFavorite = !this.fooditem.isFavorite;
 
-      //localStorage.clear();
+    if(this.fooditem.isFavorite){
+      //add to localstorage
       let food = new Food();
       food.fdcId = this.fooditem.fdcId;
       food.brandOwner = this.fooditem.brandOwner;
@@ -45,9 +52,9 @@ export class FoodItemPage implements OnInit {
       food.ingredients = this.fooditem.ingredients;
     
       localStorage.setItem(this.fooditem.fdcId.toString(), JSON.stringify(food));
-      console.log(JSON.stringify(localStorage));
-   
-    
+    }else{
+      //remove from localstorage
+      localStorage.removeItem(this.fooditem.fdcId.toString())
+    }   
   }
-
 }

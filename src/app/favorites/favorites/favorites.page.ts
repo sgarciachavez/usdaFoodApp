@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Food } from '../../models/food';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -9,7 +10,9 @@ import { Food } from '../../models/food';
 export class FavoritesPage implements OnInit {
   favorties:Food[];
 
-  constructor() { }
+  constructor(private router: Router){
+    
+   }
 
   ngOnInit() {
     
@@ -41,5 +44,10 @@ export class FavoritesPage implements OnInit {
     console.log("Remove ALL")
     this.favorties = [];
     localStorage.clear();
+  }
+
+  onCardClick(id:number){
+    //console.log(id);
+    this.router.navigate([`food-item/${id}`]);
   }
 }
